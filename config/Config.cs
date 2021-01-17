@@ -1,6 +1,8 @@
 using MongoDB.Driver;
 using  System.Collections.Generic;
 using System;
+using MongoDB.Bson;
+
 
 namespace config.Config 
 {
@@ -26,11 +28,16 @@ namespace config.Config
             foreach ( var db in GetDbList()) {
                 Console.WriteLine(db);
             }
-
-
             return dbClient;
         }
-
         public List<MongoDB.Bson.BsonDocument> GetDbList() => mongoDbClient.ListDatabases().ToList();
+
+        public IMongoCollection<MongoDB.Bson.BsonDocument> GetCollection(string dbName, string collectionName) 
+        {
+            var db = mongoDbClient.GetDatabase(dbName);
+            var collection = db.GetCollection<BsonDocument>(collectionName);
+            
+            return collection;
+        }
     }
 }
