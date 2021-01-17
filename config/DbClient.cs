@@ -4,40 +4,45 @@ using System;
 using MongoDB.Bson;
 
 
-namespace config.Config 
+namespace config.DbClient
 {
-    public class AppConfig 
+    public class DbClient
     {
         public string MONGO_DB_URL;
-        MongoClient mongoDbClient;
+        public string DB_NAME;
 
-        public AppConfig() 
+        public MongoClient DbConnection;
+
+        public DbClient() 
         {
             var env = DotNetEnv.Env.Load();
             MONGO_DB_URL = DotNetEnv.Env.GetString("MONGODB_URL");
+            DB_NAME = DotNetEnv.Env.GetString("DB_NAME");
+
             GetMongoClient();
         }
 
         public MongoClient GetMongoClient()
         {
 
-            MongoClient dbClient = new MongoClient(MONGO_DB_URL);
-            mongoDbClient = dbClient;
+            MongoClient Client = new MongoClient(MONGO_DB_URL);
+            DbConnection = Client;
 
             // Logs display current DBs
             foreach ( var db in GetDbList()) {
                 Console.WriteLine(db);
             }
-            return dbClient;
+            return DbConnection;
         }
-        public List<MongoDB.Bson.BsonDocument> GetDbList() => mongoDbClient.ListDatabases().ToList();
+        public List<MongoDB.Bson.BsonDocument> GetDbList() => DbConnection.ListDatabases().ToList();
 
-        public IMongoCollection<MongoDB.Bson.BsonDocument> GetCollection(string dbName, string collectionName) 
+        public IMongoCollection<MongoDB.Bson.BsonDocument> GetCollection(string collectionName) 
         {
-            var db = mongoDbClient.GetDatabase(dbName);
+            var db = DbConnection.GetDatabase(DB_NAME);
             var collection = db.GetCollection<BsonDocument>(collectionName);
-            
+
             return collection;
         }
+        
     }
 }

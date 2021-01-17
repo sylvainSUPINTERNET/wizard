@@ -13,8 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using services.Test;
-using config.Config;
+
+using config.DbClient;
+using models.Profiles;
+using services.ProfileServices;
 
 namespace ApiPpc
 {
@@ -23,7 +25,14 @@ namespace ApiPpc
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            AppConfig config = new AppConfig();
+            DbClient DbClient = new DbClient();
+            
+            var collection = DbClient.GetCollection("users");
+            Profiles newProfile = new Profiles("1234", "sylvain");
+
+            ProfileServices ps = new ProfileServices();
+            ps.insertOne(collection, newProfile.toBsonDocument());
+        
         }
 
         public IConfiguration Configuration { get; }
@@ -69,10 +78,10 @@ namespace ApiPpc
 
                     context.Response.StatusCode = 200;
                     context.Response.ContentType = "application/json";
-                    string msg = await new Test().GetMessage();
+                    //string msg = await new Test().GetMessage();
 
                     // anonymous obj
-                    var student = new { Id = 1, FirstName = "James", LastName = "Bond", Lyric=msg };
+                    var student = new { Id = 1, FirstName = "James", LastName = "Bond", Lyric="msg" };
                     
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(student));
                 });
