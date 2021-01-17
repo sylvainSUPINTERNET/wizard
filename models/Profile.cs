@@ -1,3 +1,4 @@
+using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
@@ -9,6 +10,8 @@ namespace models.Profiles {
 
         [BsonId(IdGenerator = typeof(ObjectIdGenerator))]
         public ObjectId Id {get; set;}
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public Profiles (string UserIdValue, string UserNameValue) {
             UserId = UserIdValue;
@@ -26,6 +29,12 @@ namespace models.Profiles {
                 },
                 {
                  "username", Username
+                },
+                {
+                    "createdAt", CreatedAt
+                },
+                {
+                    "updatedAt", UpdatedAt 
                 }
             };  
         }
