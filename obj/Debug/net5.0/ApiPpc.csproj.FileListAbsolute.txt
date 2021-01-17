@@ -58,3 +58,14 @@ E:\dev\ApiPpc\obj\Debug\net5.0\ApiPpc.dll
 E:\dev\ApiPpc\obj\Debug\net5.0\ref\ApiPpc.dll
 E:\dev\ApiPpc\obj\Debug\net5.0\ApiPpc.pdb
 E:\dev\ApiPpc\obj\Debug\net5.0\ApiPpc.genruntimeconfig.cache
+E:\dev\ApiPpc\bin\Debug\net5.0\DnsClient.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\MongoDB.Bson.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\MongoDB.Driver.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\SharpCompress.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\DotNetEnv.dll
+E:\dev\ApiPpc\bin\Debug\net5.0\Sprache.dll

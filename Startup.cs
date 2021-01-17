@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using services.Test;
+using config.Config;
 
 namespace ApiPpc
 {
@@ -22,7 +23,7 @@ namespace ApiPpc
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
+            AppConfig config = new AppConfig();
         }
 
         public IConfiguration Configuration { get; }
